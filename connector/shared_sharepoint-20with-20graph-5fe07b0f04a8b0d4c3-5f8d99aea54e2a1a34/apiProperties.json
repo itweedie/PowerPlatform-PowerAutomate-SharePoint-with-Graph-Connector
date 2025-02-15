@@ -5,12 +5,12 @@
         "type": "oauthSetting",
         "oAuthSettings": {
           "identityProvider": "aad",
-          "clientId": "229df885-246d-4b6f-8280-267e51f9dc65",
+          "clientId": "????????-????-????-????-????????????",
           "scopes": [
             "sites.selected"
           ],
           "redirectMode": "GlobalPerConnector",
-          "redirectUrl": "https://global.consent.azure-apim.net/redirect/sharepoint-20with-20graph-5fe07b0f04a8b0d4c3-5f8d99aea54e2a1a34",
+          "redirectUrl": "????",
           "properties": {
             "IsFirstParty": "False",
             "AzureActiveDirectoryResourceId": "https://graph.microsoft.com",
