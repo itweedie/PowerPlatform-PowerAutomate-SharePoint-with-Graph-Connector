@@ -1,0 +1,568 @@
+swagger: '2.0'
+info:
+  title: Default title
+  description: ''
+  version: '1.0'
+host: graph.microsoft.com
+basePath: /v1.0/
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /sites/{tenantPrefix}.sharepoint.com:/{sitePath}/{siteName}/:
+    get:
+      summary: Site Information
+      description: This end point provides information about a SharePoint Site.
+      operationId: SiteInfomation
+      parameters:
+        - $ref: '#/parameters/tenantPrefix'
+        - $ref: '#/parameters/siteName'
+        - $ref: '#/parameters/sitePath'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              '@odata.context':
+                type: string
+                description: '@odata.context'
+              createdDateTime:
+                type: string
+                description: createdDateTime
+              description:
+                type: string
+                description: description
+              id:
+                type: string
+                description: siteID
+              lastModifiedDateTime:
+                type: string
+                description: lastModifiedDateTime
+              name:
+                type: string
+                description: name
+              webUrl:
+                type: string
+                description: webUrl
+              displayName:
+                type: string
+                description: displayName
+              root:
+                type: object
+                properties: {}
+                description: root
+              siteCollection:
+                type: object
+                properties:
+                  hostname:
+                    type: string
+                    description: hostname
+                description: siteCollection
+  /sites/{siteID}/drives:
+    get:
+      summary: Site Drives
+      description: This returns a list of the drives for a SharePoint Site
+      operationId: SiteDrives
+      parameters:
+        - $ref: '#/parameters/siteID'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              '@odata.context':
+                type: string
+                description: '@odata.context'
+              '@microsoft.graph.tips':
+                type: string
+                description: '@microsoft.graph.tips'
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    createdDateTime:
+                      type: string
+                      description: createdDateTime
+                    description:
+                      type: string
+                      description: description
+                    id:
+                      type: string
+                      description: id
+                    lastModifiedDateTime:
+                      type: string
+                      description: lastModifiedDateTime
+                    name:
+                      type: string
+                      description: name
+                    webUrl:
+                      type: string
+                      description: webUrl
+                    driveType:
+                      type: string
+                      description: driveType
+                    createdBy:
+                      type: object
+                      properties:
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                              description: email
+                            id:
+                              type: string
+                              description: id
+                            displayName:
+                              type: string
+                              description: displayName
+                          description: user
+                      description: createdBy
+                    owner:
+                      type: object
+                      properties:
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                              description: email
+                            id:
+                              type: string
+                              description: id
+                            displayName:
+                              type: string
+                              description: displayName
+                          description: user
+                      description: owner
+                    quota:
+                      type: object
+                      properties:
+                        deleted:
+                          type: integer
+                          format: int32
+                          description: deleted
+                        remaining:
+                          type: integer
+                          format: int32
+                          description: remaining
+                        state:
+                          type: string
+                          description: state
+                        total:
+                          type: integer
+                          format: int32
+                          description: total
+                        used:
+                          type: integer
+                          format: int32
+                          description: used
+                      description: quota
+                    lastModifiedBy:
+                      type: object
+                      properties:
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                              description: email
+                            id:
+                              type: string
+                              description: id
+                            displayName:
+                              type: string
+                              description: displayName
+                          description: user
+                      description: lastModifiedBy
+  /sites/{siteID}/drives/{driveID}/root/children:
+    get:
+      summary: List All Children
+      operationId: ListChildren
+      description: Lists all files within a given drive
+      parameters:
+        - $ref: '#/parameters/siteID'
+        - $ref: '#/parameters/driveID'
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: object
+            properties:
+              '@odata.context':
+                type: string
+                description: '@odata.context'
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    createdBy:
+                      type: object
+                      properties:
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                              description: email
+                            id:
+                              type: string
+                              description: id
+                            displayName:
+                              type: string
+                              description: displayName
+                          description: user
+                      description: createdBy
+                    createdDateTime:
+                      type: string
+                      description: createdDateTime
+                    eTag:
+                      type: string
+                      description: eTag
+                    id:
+                      type: string
+                      description: id
+                    lastModifiedBy:
+                      type: object
+                      properties:
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                              description: email
+                            id:
+                              type: string
+                              description: id
+                            displayName:
+                              type: string
+                              description: displayName
+                          description: user
+                      description: lastModifiedBy
+                    lastModifiedDateTime:
+                      type: string
+                      description: lastModifiedDateTime
+                    name:
+                      type: string
+                      description: name
+                    parentReference:
+                      type: object
+                      properties:
+                        driveType:
+                          type: string
+                          description: driveType
+                        driveId:
+                          type: string
+                          description: driveId
+                        id:
+                          type: string
+                          description: id
+                        name:
+                          type: string
+                          description: name
+                        path:
+                          type: string
+                          description: path
+                        siteId:
+                          type: string
+                          description: siteId
+                      description: parentReference
+                    webUrl:
+                      type: string
+                      description: webUrl
+                    cTag:
+                      type: string
+                      description: cTag
+                    fileSystemInfo:
+                      type: object
+                      properties:
+                        createdDateTime:
+                          type: string
+                          description: createdDateTime
+                        lastModifiedDateTime:
+                          type: string
+                          description: lastModifiedDateTime
+                      description: fileSystemInfo
+                    folder:
+                      type: object
+                      properties:
+                        childCount:
+                          type: integer
+                          format: int32
+                          description: childCount
+                      description: folder
+                    shared:
+                      type: object
+                      properties:
+                        scope:
+                          type: string
+                          description: scope
+                      description: shared
+                    size:
+                      type: integer
+                      format: int32
+                      description: size
+    post:
+      summary: Add Folder
+      description: Adds a folder to a drive
+      operationId: AddFolder
+      parameters:
+        - $ref: '#/parameters/siteID'
+        - $ref: '#/parameters/driveID'
+        - $ref: '#/parameters/body'
+      responses:
+        '201':
+          description: Folder created successfully
+          schema: {}
+  /sites/{siteID}/drives/{driveID}/items/{itemID}/invite:
+    post:
+      summary: Add User to Item Permission
+      operationId: AddItemPermission
+      description: Add User to Item Permission
+      parameters:
+        - $ref: '#/parameters/siteID'
+        - $ref: '#/parameters/driveID'
+        - $ref: '#/parameters/itemID'
+        - $ref: '#/parameters/body'
+      responses:
+        '200':
+          description: User added to item permission successfully
+          schema:
+            type: object
+            properties:
+              '@odata.context':
+                type: string
+                description: '@odata.context'
+              value:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: id
+                    roles:
+                      type: array
+                      items:
+                        type: string
+                      description: roles
+                    grantedTo:
+                      type: object
+                      properties:
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                              description: email
+                            id:
+                              type: string
+                              description: id
+                            displayName:
+                              type: string
+                              description: displayName
+                          description: user
+                      description: grantedTo
+  /sites/{siteID}/drives/{driveID}/items/{itemID}/permissions/{permissionID}:
+    delete:
+      summary: Remove Item Permission
+      description: Removes users access from an item
+      operationId: RemoveItemPermission
+      parameters:
+        - $ref: '#/parameters/siteID'
+        - $ref: '#/parameters/driveID'
+        - $ref: '#/parameters/itemID'
+        - $ref: '#/parameters/permissionID'
+      responses:
+        '204':
+          description: Permission removed successfully
+          schema: {}
+  /sites/{siteID}/drives/{driveID}/items/{itemID}/children:
+    post:
+      summary: Add Sub Folder
+      description: Adds a sub folder to a drive item
+      operationId: AddSubFolder
+      parameters:
+        - $ref: '#/parameters/siteID'
+        - $ref: '#/parameters/itemID'
+        - $ref: '#/parameters/driveID'
+        - $ref: '#/parameters/body'
+      responses:
+        '201':
+          description: Sub folder created successfully
+          schema: {}
+  /drives/{driveID}/items/{itemID}:/{fileName}:/content:
+    put:
+      summary: Upload File
+      operationId: UploadFile
+      description: Upload a file to a drive
+      parameters:
+        - $ref: '#/parameters/driveID'
+        - $ref: '#/parameters/itemID'
+        - $ref: '#/parameters/fileName'
+        - $ref: '#/parameters/body'
+      responses:
+        '200':
+          description: File uploaded successfully
+          schema: {}
+  /drives/{driveID}/items/{itemID}/children:
+    get:
+      summary: Get Item Id
+      operationId: GetItemId
+      parameters:
+        - $ref: '#/parameters/driveID'
+        - $ref: '#/parameters/itemID'
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+  /drives/{driveID}/items/{itemID}/content:
+    get:
+      summary: Convert File Format
+      operationId: ConvertFileFormat
+      parameters:
+        - $ref: '#/parameters/driveID'
+        - $ref: '#/parameters/itemID'
+        - name: format
+          in: query
+          required: false
+          type: string
+          description: >-
+            Converts csv, doc, docx, odp, ods, odt, pot, potm, potx, pps, ppsx,
+            ppsxm, ppt, pptm, pptx, rtf, xls, xlsx the item into PDF format.
+          enum:
+            - pdf
+      responses:
+        '200':
+          description: File converted successfully
+          schema: {}
+        '302':
+          description: File found at another location
+          schema: {}
+  /sites/{siteID}/drives/{driveID}/items/{itemID}/permissions:
+    get:
+      summary: getPermissions
+      operationId: GetPermissions
+      description: Get all the permissions for the specified folder.
+      parameters:
+        - $ref: '#/parameters/siteID'
+        - $ref: '#/parameters/driveID'
+        - $ref: '#/parameters/itemID'
+      responses:
+        '200':
+          description: Successful response
+          schema: {}
+definitions: {}
+parameters:
+  tenantPrefix:
+    name: tenantPrefix
+    in: path
+    required: true
+    type: string
+    description: The tenant prefix for the SharePoint site.
+    x-ms-summary: Tenant Prefix
+    x-ms-visibility: important
+  siteName:
+    name: siteName
+    in: path
+    required: true
+    type: string
+    description: The name of the SharePoint site.
+    x-ms-summary: Site Name
+    x-ms-visibility: important
+  sitePath:
+    name: sitePath
+    in: path
+    required: true
+    type: string
+    description: The path of the SharePoint site.
+    enum:
+      - teams
+      - sites
+    x-ms-summary: Site Path
+    x-ms-visibility: important
+  siteID:
+    name: siteID
+    in: path
+    required: true
+    type: string
+    description: The ID of the SharePoint site.
+    x-ms-summary: Site ID
+    x-ms-visibility: important
+  driveID:
+    name: driveID
+    in: path
+    required: true
+    type: string
+    description: The ID of the drive.
+    x-ms-summary: Drive ID
+    x-ms-visibility: important
+  itemID:
+    name: itemID
+    in: path
+    required: true
+    type: string
+    description: The ID of the item.
+    x-ms-summary: Item ID
+    x-ms-visibility: important
+  permissionID:
+    name: permissionID
+    in: path
+    required: true
+    type: string
+    description: The ID of the permission.
+    x-ms-summary: Permission ID
+    x-ms-visibility: important
+  fileName:
+    name: fileName
+    in: path
+    required: true
+    type: string
+    description: The name of the file.
+    x-ms-summary: File Name
+    x-ms-visibility: important
+  body:
+    name: body
+    in: body
+    required: false
+    schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name
+        folder:
+          type: object
+          properties:
+            name:
+              type: string
+              description: name
+      description: The body of the request.
+    x-ms-summary: Request Body
+    x-ms-visibility: important
+responses: {}
+securityDefinitions:
+  oauth2-auth:
+    type: oauth2
+    flow: accessCode
+    tokenUrl: https://login.windows.net/common/oauth2/authorize
+    scopes:
+      sites.selected: sites.selected
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+  oAuthClientCredentials:
+    type: oauth2
+    flow: application
+    tokenUrl: https://login.windows.net/common/oauth2/authorize
+    scopes:
+      sites.selected: sites.selected
+security:
+  - oauth2-auth:
+      - sites.selected
+  - oAuthClientCredentials:
+      - sites.selected
+tags: []
