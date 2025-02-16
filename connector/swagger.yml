@@ -325,10 +325,47 @@ paths:
       operationId: AddItemPermission
       description: Add User to Item Permission
       parameters:
-        - $ref: '#/parameters/siteID'
-        - $ref: '#/parameters/driveID'
-        - $ref: '#/parameters/itemID'
-        - $ref: '#/parameters/body'
+        - name: siteID
+          in: path
+          required: true
+          type: string
+        - name: driveID
+          in: path
+          required: true
+          type: string
+        - name: itemID
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: object
+            properties:
+              recipients:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      description: email
+                description: recipients
+              message:
+                type: string
+                description: message
+              requireSignIn:
+                type: boolean
+                description: requireSignIn
+              sendInvitation:
+                type: boolean
+                description: sendInvitation
+              roles:
+                type: array
+                items:
+                  type: string
+                description: roles
       responses:
         '200':
           description: User added to item permission successfully
@@ -391,7 +428,22 @@ paths:
         - $ref: '#/parameters/siteID'
         - $ref: '#/parameters/itemID'
         - $ref: '#/parameters/driveID'
-        - $ref: '#/parameters/body'
+        - name: body
+          in: body
+          required: false
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: name
+              folder:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: name
+                description: folder
       responses:
         '201':
           description: Sub folder created successfully
@@ -405,15 +457,21 @@ paths:
         - $ref: '#/parameters/driveID'
         - $ref: '#/parameters/itemID'
         - $ref: '#/parameters/fileName'
-        - $ref: '#/parameters/body'
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: string
+            title: File Content
+            format: binary
       responses:
         '200':
           description: File uploaded successfully
           schema: {}
   /drives/{driveID}/items/{itemID}/children:
     get:
-      summary: Get Item Id
-      operationId: GetItemId
+      summary: Get Item Children
+      operationId: GetItemChildren
       parameters:
         - $ref: '#/parameters/driveID'
         - $ref: '#/parameters/itemID'

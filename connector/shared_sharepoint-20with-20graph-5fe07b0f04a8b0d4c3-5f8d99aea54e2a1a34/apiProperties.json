@@ -10,7 +10,7 @@
             "sites.selected"
           ],
           "redirectMode": "GlobalPerConnector",
-          "redirectUrl": "????",
+          "redirectUrl": "???",
           "properties": {
             "IsFirstParty": "False",
             "AzureActiveDirectoryResourceId": "https://graph.microsoft.com",
