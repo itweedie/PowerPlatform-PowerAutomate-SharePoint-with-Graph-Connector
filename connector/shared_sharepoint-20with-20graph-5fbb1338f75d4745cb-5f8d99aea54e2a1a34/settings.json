@@ -1,6 +1,6 @@
 {
-  "connectorId": "shared_sharepoint-20with-20graph-5fe07b0f04a8b0d4c3-5f8d99aea54e2a1a34",
-  "environment": "2e644956-b060-e5d7-b838-12ef67763ea7",
+  "connectorId": "shared_sharepoint-20with-20graph-5fbb1338f75d4745cb-5f8d99aea54e2a1a34",
+  "environment": "b50bfa1f-d077-e56f-aeaa-b9f92d3b79ad",
   "apiProperties": "apiProperties.json",
   "apiDefinition": "apiDefinition.swagger.json",
   "icon": "icon.png",

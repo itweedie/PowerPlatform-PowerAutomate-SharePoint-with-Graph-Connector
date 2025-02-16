@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Default title",
+    "title": "SharePoint with Graph",
     "description": "",
     "version": "1.0"
   },
@@ -477,7 +477,46 @@
             "$ref": "#/parameters/itemID"
           },
           {
-            "$ref": "#/parameters/body"
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "recipients": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "description": "email"
+                      }
+                    }
+                  },
+                  "description": "recipients"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "message"
+                },
+                "requireSignIn": {
+                  "type": "boolean",
+                  "description": "requireSignIn"
+                },
+                "sendInvitation": {
+                  "type": "boolean",
+                  "description": "sendInvitation"
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "roles"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -582,7 +621,28 @@
             "$ref": "#/parameters/driveID"
           },
           {
-            "$ref": "#/parameters/body"
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "name"
+                },
+                "folder": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "name"
+                    }
+                  },
+                  "description": "folder"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -609,7 +669,14 @@
             "$ref": "#/parameters/fileName"
           },
           {
-            "$ref": "#/parameters/body"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "File Content",
+              "format": "binary"
+            }
           }
         ],
         "responses": {
@@ -622,8 +689,8 @@
     },
     "/drives/{driveID}/items/{itemID}/children": {
       "get": {
-        "summary": "Get Item Id",
-        "operationId": "GetItemId",
+        "summary": "Get Item Children",
+        "operationId": "GetItemChildren",
         "parameters": [
           {
             "$ref": "#/parameters/driveID"
