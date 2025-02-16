@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: SharePoint with Graph
-  description: ''
+  description: 'This API allows interaction with SharePoint sites using Microsoft Graph.'
   version: '1.0'
 host: graph.microsoft.com
 basePath: /v1.0/
@@ -13,8 +13,8 @@ paths:
   /sites/{tenantPrefix}.sharepoint.com:/{sitePath}/{siteName}/:
     get:
       summary: Site Information
-      description: This end point provides information about a SharePoint Site.
-      operationId: SiteInfomation
+      description: This endpoint provides information about a SharePoint Site.
+      operationId: SiteInformation
       parameters:
         - $ref: '#/parameters/tenantPrefix'
         - $ref: '#/parameters/siteName'
@@ -27,39 +27,61 @@ paths:
             properties:
               '@odata.context':
                 type: string
-                description: '@odata.context'
+                description: OData context URL
+                x-ms-summary: OData Context
+                x-ms-visibility: important
               createdDateTime:
                 type: string
-                description: createdDateTime
+                description: The date and time the site was created
+                x-ms-summary: Created DateTime
+                x-ms-visibility: important
               description:
                 type: string
-                description: description
+                description: The description of the site
+                x-ms-summary: Description
+                x-ms-visibility: important
               id:
                 type: string
-                description: siteID
+                description: The unique identifier of the site
+                x-ms-summary: Site ID
+                x-ms-visibility: important
               lastModifiedDateTime:
                 type: string
-                description: lastModifiedDateTime
+                description: The date and time the site was last modified
+                x-ms-summary: Last Modified DateTime
+                x-ms-visibility: important
               name:
                 type: string
-                description: name
+                description: The name of the site
+                x-ms-summary: Name
+                x-ms-visibility: important
               webUrl:
                 type: string
-                description: webUrl
+                description: The URL of the site
+                x-ms-summary: Web URL
+                x-ms-visibility: important
               displayName:
                 type: string
-                description: displayName
+                description: The display name of the site
+                x-ms-summary: Display Name
+                x-ms-visibility: important
               root:
                 type: object
                 properties: {}
-                description: root
+                description: Root information of the site
+                x-ms-summary: Root
+                x-ms-visibility: important
               siteCollection:
                 type: object
                 properties:
                   hostname:
                     type: string
-                    description: hostname
-                description: siteCollection
+                    description: The hostname of the site collection
+                    x-ms-summary: Hostname
+                    x-ms-visibility: important
+                description: Site collection information
+                x-ms-summary: Site Collection
+                x-ms-visibility: important
   /sites/{siteID}/drives:
     get:
       summary: Site Drives
@@ -75,10 +97,14 @@ paths:
             properties:
               '@odata.context':
                 type: string
-                description: '@odata.context'
+                description: OData context URL
+                x-ms-summary: OData Context
+                x-ms-visibility: important
               '@microsoft.graph.tips':
                 type: string
-                description: '@microsoft.graph.tips'
+                description: Microsoft Graph tips
+                x-ms-summary: Graph Tips
+                x-ms-visibility: important
               value:
                 type: array
                 items:
@@ -86,25 +112,39 @@ paths:
                   properties:
                     createdDateTime:
                       type: string
-                      description: createdDateTime
+                      description: The date and time the drive was created
+                      x-ms-summary: Created DateTime
+                      x-ms-visibility: important
                     description:
                       type: string
-                      description: description
+                      description: The description of the drive
+                      x-ms-summary: Description
+                      x-ms-visibility: important
                     id:
                       type: string
-                      description: id
+                      description: The unique identifier of the drive
+                      x-ms-summary: Drive ID
+                      x-ms-visibility: important
                     lastModifiedDateTime:
                       type: string
-                      description: lastModifiedDateTime
+                      description: The date and time the drive was last modified
+                      x-ms-summary: Last Modified DateTime
+                      x-ms-visibility: important
                     name:
                       type: string
-                      description: name
+                      description: The name of the drive
+                      x-ms-summary: Name
+                      x-ms-visibility: important
                     webUrl:
                       type: string
-                      description: webUrl
+                      description: The URL of the drive
+                      x-ms-summary: Web URL
+                      x-ms-visibility: important
                     driveType:
                       type: string
-                      description: driveType
+                      description: The type of the drive
+                      x-ms-summary: Drive Type
+                      x-ms-visibility: important
                     createdBy:
                       type: object
                       properties:
@@ -113,15 +153,25 @@ paths:
                           properties:
                             email:
                               type: string
-                              description: email
+                              description: The email of the user who created the drive
+                              x-ms-summary: Email
+                              x-ms-visibility: important
                             id:
                               type: string
-                              description: id
+                              description: The ID of the user who created the drive
+                              x-ms-summary: User ID
+                              x-ms-visibility: important
                             displayName:
                               type: string
-                              description: displayName
-                          description: user
-                      description: createdBy
+                              description: The display name of the user who created the drive
+                              x-ms-summary: Display Name
+                              x-ms-visibility: important
+                          description: User information
+                          x-ms-summary: User
+                          x-ms-visibility: important
+                      description: Created by information
+                      x-ms-summary: Created By
+                      x-ms-visibility: important
                     owner:
                       type: object
                       properties:
@@ -130,38 +180,60 @@ paths:
                           properties:
                             email:
                               type: string
-                              description: email
+                              description: The email of the owner
+                              x-ms-summary: Email
+                              x-ms-visibility: important
                             id:
                               type: string
-                              description: id
+                              description: The ID of the owner
+                              x-ms-summary: User ID
+                              x-ms-visibility: important
                             displayName:
                               type: string
-                              description: displayName
-                          description: user
-                      description: owner
+                              description: The display name of the owner
+                              x-ms-summary: Display Name
+                              x-ms-visibility: important
+                          description: User information
+                          x-ms-summary: User
+                          x-ms-visibility: important
+                      description: Owner information
+                      x-ms-summary: Owner
+                      x-ms-visibility: important
                     quota:
                       type: object
                       properties:
                         deleted:
                           type: integer
                           format: int32
-                          description: deleted
+                          description: The amount of deleted space in the drive
+                          x-ms-summary: Deleted Space
+                          x-ms-visibility: important
                         remaining:
                           type: integer
                           format: int32
-                          description: remaining
+                          description: The remaining space in the drive
+                          x-ms-summary: Remaining Space
+                          x-ms-visibility: important
                         state:
                           type: string
-                          description: state
+                          description: The state of the drive
+                          x-ms-summary: State
+                          x-ms-visibility: important
                         total:
                           type: integer
                           format: int32
-                          description: total
+                          description: The total space in the drive
+                          x-ms-summary: Total Space
+                          x-ms-visibility: important
                         used:
                           type: integer
                           format: int32
-                          description: used
-                      description: quota
+                          description: The used space in the drive
+                          x-ms-summary: Used Space
+                          x-ms-visibility: important
+                      description: Quota information
+                      x-ms-summary: Quota
+                      x-ms-visibility: important
                     lastModifiedBy:
                       type: object
                       properties:
@@ -170,15 +242,25 @@ paths:
                           properties:
                             email:
                               type: string
-                              description: email
+                              description: The email of the user who last modified the drive
+                              x-ms-summary: Email
+                              x-ms-visibility: important
                             id:
                               type: string
-                              description: id
+                              description: The ID of the user who last modified the drive
+                              x-ms-summary: User ID
+                              x-ms-visibility: important
                             displayName:
                               type: string
-                              description: displayName
-                          description: user
-                      description: lastModifiedBy
+                              description: The display name of the user who last modified the drive
+                              x-ms-summary: Display Name
+                              x-ms-visibility: important
+                          description: User information
+                          x-ms-summary: User
+                          x-ms-visibility: important
+                      description: Last modified by information
+                      x-ms-summary: Last Modified By
+                      x-ms-visibility: important
   /sites/{siteID}/drives/{driveID}/root/children:
     get:
       summary: List All Children
@@ -195,7 +277,9 @@ paths:
             properties:
               '@odata.context':
                 type: string
-                description: '@odata.context'
+                description: OData context URL
+                x-ms-summary: OData Context
+                x-ms-visibility: important
               value:
                 type: array
                 items:
@@ -209,24 +293,40 @@ paths:
                           properties:
                             email:
                               type: string
-                              description: email
+                              description: The email of the user who created the item
+                              x-ms-summary: Email
+                              x-ms-visibility: important
                             id:
                               type: string
-                              description: id
+                              description: The ID of the user who created the item
+                              x-ms-summary: User ID
+                              x-ms-visibility: important
                             displayName:
                               type: string
-                              description: displayName
-                          description: user
-                      description: createdBy
+                              description: The display name of the user who created the item
+                              x-ms-summary: Display Name
+                              x-ms-visibility: important
+                          description: User information
+                          x-ms-summary: User
+                          x-ms-visibility: important
+                      description: Created by information
+                      x-ms-summary: Created By
+                      x-ms-visibility: important
                     createdDateTime:
                       type: string
-                      description: createdDateTime
+                      description: The date and time the item was created
+                      x-ms-summary: Created DateTime
+                      x-ms-visibility: important
                     eTag:
                       type: string
-                      description: eTag
+                      description: The ETag of the item
+                      x-ms-summary: ETag
+                      x-ms-visibility: important
                     id:
                       type: string
-                      description: id
+                      description: The unique identifier of the item
+                      x-ms-summary: Item ID
+                      x-ms-visibility: important
                     lastModifiedBy:
                       type: object
                       properties:
@@ -235,78 +335,126 @@ paths:
                           properties:
                             email:
                               type: string
-                              description: email
+                              description: The email of the user who last modified the item
+                              x-ms-summary: Email
+                              x-ms-visibility: important
                             id:
                               type: string
-                              description: id
+                              description: The ID of the user who last modified the item
+                              x-ms-summary: User ID
+                              x-ms-visibility: important
                             displayName:
                               type: string
-                              description: displayName
-                          description: user
-                      description: lastModifiedBy
+                              description: The display name of the user who last modified the item
+                              x-ms-summary: Display Name
+                              x-ms-visibility: important
+                          description: User information
+                          x-ms-summary: User
+                          x-ms-visibility: important
+                      description: Last modified by information
+                      x-ms-summary: Last Modified By
+                      x-ms-visibility: important
                     lastModifiedDateTime:
                       type: string
-                      description: lastModifiedDateTime
+                      description: The date and time the item was last modified
+                      x-ms-summary: Last Modified DateTime
+                      x-ms-visibility: important
                     name:
                       type: string
-                      description: name
+                      description: The name of the item
+                      x-ms-summary: Name
+                      x-ms-visibility: important
                     parentReference:
                       type: object
                       properties:
                         driveType:
                           type: string
-                          description: driveType
+                          description: The type of the drive
+                          x-ms-summary: Drive Type
+                          x-ms-visibility: important
                         driveId:
                           type: string
-                          description: driveId
+                          description: The ID of the drive
+                          x-ms-summary: Drive ID
+                          x-ms-visibility: important
                         id:
                           type: string
-                          description: id
+                          description: The ID of the parent item
+                          x-ms-summary: Parent Item ID
+                          x-ms-visibility: important
                         name:
                           type: string
-                          description: name
+                          description: The name of the parent item
+                          x-ms-summary: Parent Item Name
+                          x-ms-visibility: important
                         path:
                           type: string
-                          description: path
+                          description: The path of the parent item
+                          x-ms-summary: Parent Item Path
+                          x-ms-visibility: important
                         siteId:
                           type: string
-                          description: siteId
-                      description: parentReference
+                          description: The ID of the site
+                          x-ms-summary: Site ID
+                          x-ms-visibility: important
+                      description: Parent reference information
+                      x-ms-summary: Parent Reference
+                      x-ms-visibility: important
                     webUrl:
                       type: string
-                      description: webUrl
+                      description: The URL of the item
+                      x-ms-summary: Web URL
+                      x-ms-visibility: important
                     cTag:
                       type: string
-                      description: cTag
+                      description: The cTag of the item
+                      x-ms-summary: CTag
+                      x-ms-visibility: important
                     fileSystemInfo:
                       type: object
                       properties:
                         createdDateTime:
                           type: string
-                          description: createdDateTime
+                          description: The date and time the file system was created
+                          x-ms-summary: Created DateTime
+                          x-ms-visibility: important
                         lastModifiedDateTime:
                           type: string
-                          description: lastModifiedDateTime
-                      description: fileSystemInfo
+                          description: The date and time the file system was last modified
+                          x-ms-summary: Last Modified DateTime
+                          x-ms-visibility: important
+                      description: File system information
+                      x-ms-summary: File System Info
+                      x-ms-visibility: important
                     folder:
                       type: object
                       properties:
                         childCount:
                           type: integer
                           format: int32
-                          description: childCount
-                      description: folder
+                          description: The number of children in the folder
+                          x-ms-summary: Child Count
+                          x-ms-visibility: important
+                      description: Folder information
+                      x-ms-summary: Folder
+                      x-ms-visibility: important
                     shared:
                       type: object
                       properties:
                         scope:
                           type: string
-                          description: scope
-                      description: shared
+                          description: The scope of the shared item
+                          x-ms-summary: Scope
+                          x-ms-visibility: important
+                      description: Shared information
+                      x-ms-summary: Shared
+                      x-ms-visibility: important
                     size:
                       type: integer
                       format: int32
-                      description: size
+                      description: The size of the item
+                      x-ms-summary: Size
+                      x-ms-visibility: important
     post:
       summary: Add Folder
       description: Adds a folder to a drive
@@ -318,7 +466,152 @@ paths:
       responses:
         '201':
           description: Folder created successfully
-          schema: {}
+          schema:
+            type: object
+            properties:
+              @odata.context:
+                type: string
+                description: OData context URL
+                x-ms-summary: OData Context
+                x-ms-visibility: important
+              @odata.etag:
+                type: string
+                description: OData ETag
+                x-ms-summary: OData ETag
+                x-ms-visibility: important
+              createdDateTime:
+                type: string
+                format: date-time
+                description: The date and time the folder was created
+                x-ms-summary: Created DateTime
+                x-ms-visibility: important
+              eTag:
+                type: string
+                description: The ETag of the folder
+                x-ms-summary: ETag
+                x-ms-visibility: important
+              id:
+                type: string
+                description: The unique identifier of the folder
+                x-ms-summary: Folder ID
+                x-ms-visibility: important
+              lastModifiedDateTime:
+                type: string
+                format: date-time
+                description: The date and time the folder was last modified
+                x-ms-summary: Last Modified DateTime
+                x-ms-visibility: important
+              name:
+                type: string
+                description: The name of the folder
+                x-ms-summary: Name
+                x-ms-visibility: important
+              size:
+                type: integer
+                description: The size of the folder
+                x-ms-summary: Size
+                x-ms-visibility: important
+              webUrl:
+                type: string
+                description: The URL of the folder
+                x-ms-summary: Web URL
+                x-ms-visibility: important
+              cTag:
+                type: string
+                description: The cTag of the folder
+                x-ms-summary: CTag
+                x-ms-visibility: important
+              commentSettings:
+                type: object
+                properties:
+                  commentingDisabled:
+                    type: object
+                    properties:
+                      isDisabled:
+                        type: boolean
+                        description: Indicates if commenting is disabled
+                        x-ms-summary: Commenting Disabled
+                        x-ms-visibility: important
+                description: Comment settings
+                x-ms-summary: Comment Settings
+                x-ms-visibility: important
+              createdBy:
+                type: object
+                properties:
+                  application:
+                    type: object
+                    properties:
+                      displayName:
+                        type: string
+                        description: The display name of the application
+                        x-ms-summary: Application Display Name
+                        x-ms-visibility: important
+                      id:
+                        type: string
+                        description: The ID of the application
+                        x-ms-summary: Application ID
+                        x-ms-visibility: important
+                  user:
+                    type: object
+                    properties:
+                      displayName:
+                        type: string
+                        description: The display name of the user
+                        x-ms-summary: User Display Name
+                        x-ms-visibility: important
+                description: Created by information
+                x-ms-summary: Created By
+                x-ms-visibility: important
+              lastModifiedBy:
+                type: object
+                properties:
+                  application:
+                    type: object
+                    properties:
+                      displayName:
+                        type: string
+                        description: The display name of the application
+                        x-ms-summary: Application Display Name
+                        x-ms-visibility: important
+                      id:
+                        type: string
+                        description: The ID of the application
+                        x-ms-summary: Application ID
+                        x-ms-visibility: important
+                  user:
+                    type: object
+                    properties:
+                      displayName:
+                        type: string
+                        description: The display name of the user
+                        x-ms-summary: User Display Name
+                        x-ms-visibility: important
+                description: Last modified by information
+                x-ms-summary: Last Modified By
+                x-ms-visibility: important
+              parentReference:
+                type: object
+                properties:
+                  driveId:
+                    type: string
+                    description: The ID of the drive
+                    x-ms-summary: Drive ID
+                    x-ms-visibility: important
+                  driveType:
+                    type: string
+                    description: The type of the drive
+                    x-ms-summary: Drive Type
+                    x-ms-visibility: important
+                  id:
+                    type: string
+                    description: The ID of the parent item
+                    x-ms-summary: Parent Item ID
+                    x-ms-visibility: important
+                  path:
+                    type: string
+                    description: The path of the parent item
+                    x-ms-summary: Parent Item Path
+                    x-ms-visibility: important
   /sites/{siteID}/drives/{driveID}/items/{itemID}/invite:
     post:
       summary: Add User to Item Permission
